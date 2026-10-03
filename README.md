@@ -1,5 +1,7 @@
-# VIDA ÓPTIMA
+# VIDA ÓPTIMA 
 ### Plataforma de Bienestar Integral Personalizado
+
+[Desarrollado por LANDIRIANOS SITE 🌐]([https://github.io](https://landirianositeoficial-pro.github.io/LANDIRIANO-SITE-OFICIAL-WEB/))
 
 **Founder & CEO:** Terry Romero  
 **Lead Architect:** Terry Edicson Romero Loreto  
@@ -10,7 +12,7 @@
 
 ## ¿Qué es Vida Óptima?
 
-Vida Óptima es una plataforma de asistente personal de bienestar integral que genera planes nutricionales, rutinas de ejercicio, y contenido de salud holística completamente personalizados en base al perfil único de cada usuario — incluyendo su presupuesto económico real, su ubicación geográfica, su edad, género y objetivos de vida.
+Vida Óptima es una plataforma de asistente personal de bienestar integral que genera planes nutricionales, rutinas de ejercicio, y contenido de salud holística completamente personalizados con base en el perfil único de cada usuario — incluyendo su presupuesto económico real, su ubicación geográfica, su edad, género y objetivos de vida.
 
 ## Características Principales
 
@@ -27,8 +29,7 @@ Vida Óptima es una plataforma de asistente personal de bienestar integral que g
 ## Propiedad Intelectual
 
 © 2025 Terry Romero. Todos los derechos reservados.  
-Ver archivo [LICENSE](./LICENSE) para términos de uso.
-
----
+Desarrollado en alianza tecnológica por la división de ingeniería de **LANDIRIANOS SITE**.  
+Ver archivo [LICENSE](./LICENSE) para términos de uso estrictos.
 
 *Este proyecto está protegido bajo las leyes internacionales de propiedad intelectual (Convenio de Berna, OMPI/WIPO).*
