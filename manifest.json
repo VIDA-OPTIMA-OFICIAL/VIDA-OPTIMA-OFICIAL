@@ -1,0 +1,16 @@
+{
+  "name": "Vida Óptima",
+  "short_name": "Vida Óptima",
+  "description": "Tu asistente de longevidad y bioquímica nutricional.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0a0e17",
+  "theme_color": "#00f3ff",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ]
+}

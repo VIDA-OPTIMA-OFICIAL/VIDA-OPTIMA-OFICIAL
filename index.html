@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vida Óptima — Bioquímica Nutricional y Longevidad</title>
+    <meta name="description" content="Vida Óptima: Tu asistente inteligente de salud y longevidad. Menús personalizados según tu presupuesto y bioquímica. ¡Optimiza tu vida hoy!">
+    <meta name="keywords" content="vida optima, salud, nutricion, longevidad, biohacking, menu personalizado, presupuesto alimentacion, bienestar">
+    <meta name="author" content="Vida Óptima">
+    <meta name="google-site-verification" content="GHcOZleJNn6uwqtNGmeANsBuA-85JAv3RLnpLBjB5m4">
+    <meta name="theme-color" content="#0a0e17">
+    <!-- ── SEO: Canonical ── -->
+    <link rel="canonical" href="https://github.io">
+    <!-- ── SEO: Open Graph ── -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://github.io">
+    <meta property="og:title"       content="Vida Óptima — Bioquímica Nutricional y Longevidad">
+    <meta property="og:description" content="Tu asistente inteligente de salud y longevidad. Menús personalizados según tu presupuesto y bioquímica.">
+    <meta property="og:image"       content="https://github.io/logotipo/LOGO-VIDAOPTIMA.webp">
+    <meta property="og:locale"      content="es_ES">
+    <!-- ── SEO: Twitter Card ── -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="Vida Óptima — Bioquímica Nutricional y Longevidad">
+    <meta name="twitter:description" content="Tu asistente inteligente de salud y longevidad.">
+    <meta name="twitter:image"       content="https://github.io/logotipo/LOGO-VIDAOPTIMA.webp">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="vidaoptima-intro-layer" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #0A0A0F; z-index: 99999; display: flex; justify-content: center; align-items: center; transition: opacity 0.6s ease, visibility 0.6s ease;">
+    <div style="position: absolute; top: 20px; color: rgba(255,255,255,0.4); font-size: 13px; font-family: sans-serif; pointer-events:none;">🔊 Toca la pantalla para activar el audio</div>
+    <button id="skip-intro-btn" style="position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 10px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; z-index: 100000; transition: background 0.2s;">Saltar Intro ✕</button>
+    <video id="vidaoptima-video" autoplay muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+        <source src="video-inicio/presentacion-vidaoptima.mp4" type="video/mp4">
+    </video>
+</div>
+
+<!-- MODAL LEGAL Y DE RESPONSABILIDAD (Obligatorio) -->
+<div id="legalModal" class="modal" style="display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.95); z-index:9999;">
+  <div class="modal-content" style="max-width:500px; padding:30px; border:1px solid var(--border);">
+    <div style="font-size:40px; margin-bottom:20px;">⚖️</div>
+    <h2 style="margin-bottom:15px;">Aviso Legal y Contrato de Uso</h2>
+    <div style="text-align:left; font-size:13px; color:var(--text2); line-height:1.6; max-height:350px; overflow-y:auto; padding-right:10px; margin-bottom:25px; border-bottom: 1px solid var(--border);">
+      <p><strong>1. NATURALEZA DEL SERVICIO:</strong> Vida Óptima es una plataforma de software de procesamiento de datos biométricos con fines exclusivamente educativos y de bienestar. No es un dispositivo médico ni un servicio de telemedicina.</p>
+      
+      <p><strong>2. JURISDICCIÓN INTERNACIONAL Y ARBITRAJE:</strong> Cualquier disputa relacionada con este software se regirá por las leyes de Delaware y se resolverá exclusivamente mediante arbitraje vinculante, renunciando el usuario a cualquier acción de clase o juicio por jurado en su jurisdicción local.</p>
+      
+      <p><strong>3. PROTECCIÓN DE DATOS (GDPR & CCPA):</strong> Cumplimos con el Reglamento General de Protección de Datos (GDPR) y la Ley de Privacidad del Consumidor de California (CCPA). Sus datos se almacenan de forma segura en Google Cloud (Firebase). Usted tiene derecho a acceder, rectificar y eliminar su información en cualquier momento desde su perfil.</p>
+      
+      <p><strong>4. EXONERACIÓN TOTAL:</strong> Al aceptar, usted libera a Vida Óptima (Registro Independiente) y a sus colaboradores de cualquier reclamo por reacciones alérgicas, condiciones médicas preexistentes no reportadas o interpretaciones erróneas del contenido.</p>
+      
+      <p><strong>5. PROPIEDAD INTELECTUAL:</strong> Este código contiene algoritmos protegidos. Cualquier intento de ingeniería inversa o difamación de la marca será perseguido legalmente.</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <button class="btn-primary" onclick="acceptLegal()">Acepto los términos y certifico mis datos</button>
+      <button style="background:none; border:none; color:var(--text3); font-size:12px; cursor:pointer;" onclick="location.reload()">No acepto (Salir)</button>
+    </div>
+  </div>
+</div>
+
+<!-- LANDING PAGE -->
+<section id="landing">
+  <div class="landing-bg"></div>
+  <nav class="top-nav">
+    <div class="logo">VIDA <span>ÓPTIMA</span></div>
+    <div class="nav-credits">Vida Óptima | Sistema Independiente de Bienestar</div>
+  </nav>
+  <div class="landing-content">
+    <div class="landing-badge">🌿 El Manual de Instrucción de Vida</div>
+    <h1>Vive <span class="gradient-text">100 años</span><br>con propósito.</h1>
+    <p class="landing-sub">Un sistema inteligente que analiza quién eres y te entrega un plan completo de nutrición, ejercicio, jugos, compras y bienestar — adaptado a tu cuerpo, tu país y tu bolsillo.</p>
+    <div class="landing-pills">
+      <span>🥗 Menú personalizado</span>
+      <span>💪 Rutina de ejercicio</span>
+      <span>🛒 Lista de compras</span>
+      <span>🧠 Salud mental</span>
+      <span>❤️ Salud sexual</span>
+      <span>🛡️ Prevención</span>
+    </div>
+    <button class="btn-primary" onclick="startOnboarding()">Comenzar mi plan gratuito →</button>
+    <p class="landing-note">Sin registro. Sin tarjeta. 100% gratuito.</p>
+  </div>
+  <div class="scroll-indicator">↓</div>
+</section>
+
+<!-- ONBOARDING -->
+<section id="onboarding" class="hidden">
+  <div class="onboarding-wrap">
+    <div class="onboarding-header">
+      <div class="logo small">VIDA <span>ÓPTIMA</span></div>
+      <div class="progress-wrap">
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <span class="progress-label" id="progressLabel">Paso 1 de 6</span>
+      </div>
+    </div>
+
+    <!-- STEP 1: Datos Personales -->
+    <div class="step active" id="step1">
+      <div class="step-icon">👤</div>
+      <h2>¿Cuéntanos sobre ti?</h2>
+      <p class="step-sub">Esta información nos permite crear un plan 100% ajustado a tu realidad.</p>
+      <div class="form-grid">
+        <div class="form-group full">
+          <label>¿Cómo te llamas?</label>
+          <input type="text" id="nombre" placeholder="Tu nombre" />
+        </div>
+        <div class="form-group">
+          <label>Edad</label>
+          <input type="number" id="edad" placeholder="Ej: 34" min="6" max="100" />
+        </div>
+        <div class="form-group">
+          <label>Sexo</label>
+          <select id="sexo">
+            <option value="">Seleccionar</option>
+            <option value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Peso (kg)</label>
+          <input type="number" id="peso" placeholder="Ej: 75" />
+        </div>
+        <div class="form-group">
+          <label>Estatura (cm)</label>
+          <input type="number" id="estatura" placeholder="Ej: 175" />
+        </div>
+        <div class="form-group full">
+          <label>País / Ciudad</label>
+          <input type="text" id="ubicacion" placeholder="Ej: Venezuela, Caracas" />
+        </div>
+        <div class="form-group full"><label for="etnicidad">Origen Étnico / Ancestralidad (Riesgos Cardiovasculares Genéticos)</label><select id="etnicidad" required><option value="hispano" selected>Hispano / Latinoamericano</option><option value="afrodescendiente">Afrodescendiente / Raza Negra</option><option value="caucasico">Caucásico / Raza Blanca</option><option value="indigena">Indígena / Nativo Americano</option><option value="asiatico">Asiático</option></select></div>
+      </div>
+      <button class="btn-next" onclick="nextStep(2)">Continuar →</button>
+    </div>
+
+    <!-- STEP 2: Salud -->
+    <div class="step" id="step2">
+      <div class="step-icon">🏥</div>
+      <h2>Tu estado de salud</h2>
+      <p class="step-sub">Esta información es confidencial y solo se usa para personalizar tu plan.</p>
+      <div class="form-grid">
+        <div class="form-group full">
+          <label>¿Tienes alguna condición de salud? (puedes elegir varias)</label>
+          <div class="checkbox-grid">
+            <label class="cb-item"><input type="checkbox" name="enfermedad" value="diabetes"> Diabetes</label>
+            <label class="cb-item"><input type="checkbox" name="enfermedad" value="hipertension"> Hipertensión</label>
+            <label class="cb-item"><input type="checkbox" name="enfermedad" value="colesterol"> Colesterol alto</label>
+            <label class="cb-item"><input type="checkbox" name="enfermedad" value="hipotiroidismo"> Hipotiroidismo</label>
+            <label class="cb-item"><input type="checkbox" name="enfermedad" value="anemia"> Anemia</label>
+            <label class="cb-item"><input type="checkbox" name="enfermedad" value="gastritis"> Gastritis</label>
+            <label class="cb-item"><input type="checkbox" name="enfermedad" value="artritis"> Artritis</label>
+            <label class="cb-item"><input type="checkbox" name="enfermedad" value="ninguna"> Ninguna ✓</label>
+          </div>
+        </div>
+        <div class="form-group full">
+          <label>Alergias alimentarias</label>
+          <input type="text" id="alergias" placeholder="Ej: mariscos, lácteos, gluten (o escribe ninguna)" />
+        </div>
+        <div class="form-group full">
+          <label>¿Cómo es tu calidad de sueño?</label>
+          <select id="sueno">
+            <option value="bueno">Duermo 7-8h profundas y despierto con energía</option>
+            <option value="regular">Duermo bien, pero despierto cansado/a</option>
+            <option value="malo">Duermo menos de 6h o tengo insomnio crónico</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>¿Cuál es tu nivel de estrés diario?</label>
+          <select id="estres">
+            <option value="bajo">Bajo (Me siento en control y tranquilo)</option>
+            <option value="moderado">Moderado (Ajetreo normal, pero manejable)</option>
+            <option value="alto">Alto (Sufro de ansiedad constante o picos de estrés)</option>
+          </select>
+        </div>
+        <div class="form-group full"><label for="diagnostico_cognitivo">Variaciones Cognitivas o Diagnósticos de Estado de Ánimo Contemporáneos:</label><select id="diagnostico_cognitivo" required><option value="ninguno" selected>Ninguno (Enfoque cognitivo estable y paz mental)</option><option value="tdah">TDAH / TDA (Falta de atención sostenida, mente dispersa, impulsividad)</option><option value="ansiedad">Ansiedad Generalizada / Pánico (Estrés invalidante, loops mentales)</option><option value="burnout">Agotamiento Crónico / Burnout (Fatiga mental severa por sobreestimulación)</option><option value="espectro_autista">Espectro Autista / CEA de Alto Rendimiento (Hipersensibilidad sensorial)</option></select></div>
+        <div class="form-group full">
+          <label>¿Cómo es tu digestión?</label>
+          <select id="digestion">
+            <option value="normal">Normal, sin problemas</option>
+            <option value="gases">Sufro de gases o inflamación frecuente</option>
+            <option value="estrenimiento">Sufro de estreñimiento</option>
+            <option value="acidez">Sufro de acidez o reflujo</option>
+          </select>
+        </div>
+        <div class="form-group full"><label for="estado_gastrico">Estado de la Mucosa Gástrica:</label><select id="estado_gastrico" required><option value="sano" selected>Digestión óptima, sin acidez ni reflujo crónico</option><option value="gastritis_leve">Acidez, gases o reflujo ocasional</option><option value="gastritis_cronica">Gastritis Crónica / Úlceras (Mucosa altamente sensible)</option></select></div>
+        <div class="form-group full"><label for="medicamentos">¿Consume fármacos anticoagulantes o analgésicos frecuentes?</label><select id="medicamentos" required><option value="no" selected>No consumo medicamentos de este tipo</option><option value="si_anticoagulante">Sí, tomo anticoagulantes clínicos</option><option value="si_analgesicos">Sí, tomo analgésicos / AINEs de forma recurrente</option></select></div>
+        <div class="form-group">
+          <label>¿Fumas?</label>
+          <select id="fuma">
+            <option value="no">No</option>
+            <option value="si">Sí</option>
+            <option value="exfumador">Ex fumador/a</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>¿Consumes alcohol?</label>
+          <select id="alcohol">
+            <option value="no">No</option>
+            <option value="ocasional">Ocasionalmente</option>
+            <option value="frecuente">Frecuentemente</option>
+          </select>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-back" onclick="nextStep(1)">← Atrás</button>
+        <button class="btn-next" onclick="nextStep(3)">Continuar →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Objetivos -->
+    <div class="step" id="step3">
+      <div class="step-icon">🎯</div>
+      <h2>¿Cuál es tu objetivo principal?</h2>
+      <p class="step-sub">Elige lo que más se ajuste a tu meta actual.</p>
+      <div class="option-cards" id="objetivoCards">
+        <div class="option-card" data-value="aumentar_masa" onclick="toggleOption(this)">
+          <div class="oc-icon">💪</div>
+          <div class="oc-title">Ganar masa muscular</div>
+          <div class="oc-sub">Quiero más fuerza y volumen</div>
+        </div>
+        <div class="option-card" data-value="bajar_grasa" onclick="toggleOption(this)">
+          <div class="oc-icon">🔥</div>
+          <div class="oc-title">Bajar grasa corporal</div>
+          <div class="oc-sub">Quiero perder peso de forma sana</div>
+        </div>
+        <div class="option-card" data-value="mantenimiento" onclick="toggleOption(this)">
+          <div class="oc-icon">⚖️</div>
+          <div class="oc-title">Mantenimiento saludable</div>
+          <div class="oc-sub">Estoy bien, quiero mantenerme</div>
+        </div>
+        <div class="option-card" data-value="recuperacion" onclick="toggleOption(this)">
+          <div class="oc-icon">🌱</div>
+          <div class="oc-title">Recuperación</div>
+          <div class="oc-sub">Me estoy recuperando de una condición</div>
+        </div>
+        <div class="option-card" data-value="rendimiento" onclick="toggleOption(this)">
+          <div class="oc-icon">🏃</div>
+          <div class="oc-title">Alto rendimiento</div>
+          <div class="oc-sub">Practico deporte y quiero más</div>
+        </div>
+        <div class="option-card" data-value="longevidad" onclick="toggleOption(this)">
+          <div class="oc-icon">⏳</div>
+          <div class="oc-title">Longevidad</div>
+          <div class="oc-sub">Quiero vivir sano muchos años</div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-back" onclick="nextStep(2)">← Atrás</button>
+        <button class="btn-next" onclick="nextStep(4)">Continuar →</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: Enfoque -->
+    <div class="step" id="step4">
+      <div class="step-icon">✨</div>
+      <h2>¿En qué quieres enfocarte?</h2>
+      <p class="step-sub">Puedes elegir varios. Tu plan se optimizará para todos ellos.</p>
+      <div class="focus-grid" id="focusGrid">
+        <div class="focus-item" data-val="energia"     onclick="toggleFocus(this,'energia')"><span>⚡</span> Energía</div>
+        <div class="focus-item" data-val="intelecto"   onclick="toggleFocus(this,'intelecto')"><span>🧠</span> Intelecto</div>
+        <div class="focus-item" data-val="fuerza"      onclick="toggleFocus(this,'fuerza')"><span>💪</span> Fuerza</div>
+        <div class="focus-item" data-val="rendimiento" onclick="toggleFocus(this,'rendimiento')"><span>🏃</span> Rendimiento</div>
+        <div class="focus-item" data-val="salud"       onclick="toggleFocus(this,'salud')"><span>❤️</span> Salud general</div>
+        <div class="focus-item" data-val="sueno"       onclick="toggleFocus(this,'sueno')"><span>😴</span> Sueño óptimo</div>
+        <div class="focus-item" data-val="libido"      onclick="toggleFocus(this,'libido')"><span>🔥</span> Libido</div>
+        <div class="focus-item selected" data-val="longevidad" style="pointer-events:none; opacity:1;" title="Longevidad: siempre activa como base de tu plan."><span>🌿</span> Longevidad</div>
+      </div>
+      <input type="hidden" id="enfoques" value="">
+      <div class="btn-row">
+        <button class="btn-back" onclick="nextStep(3)">← Atrás</button>
+        <button class="btn-next" onclick="nextStep(5)">Continuar →</button>
+      </div>
+    </div>
+
+    <!-- STEP 5: Presupuesto y Actividad -->
+    <div class="step" id="step5">
+      <div class="step-icon">💰</div>
+      <h2>Presupuesto y estilo de vida</h2>
+      <p class="step-sub">Esto nos permite adaptar tu menú a lo que realmente puedes comprar.</p>
+      <div class="form-grid">
+        <div class="form-group full">
+          <label>Ingreso mensual aproximado (USD)</label>
+          <input type="number" id="ingreso" placeholder="Ej: 500" min="60" oninput="if(+this.value<60&&this.value!='')this.value=60" />
+        </div>
+        <div class="form-group full">
+          <label>Presupuesto quincenal para alimentación (USD aproximado)</label>
+          <input type="number" id="presupuesto" placeholder="Ej: 50" min="30" oninput="if(+this.value<30&&this.value!='')this.value=30" />
+          <small>Usaremos USD como referencia universal</small>
+        </div>
+        <div class="form-group full">
+          <label>Nivel de actividad física actual</label>
+          <select id="actividad">
+            <option value="sedentario">Sedentario (poco o nada de ejercicio)</option>
+            <option value="ligero">Ligero (camino o me muevo algo)</option>
+            <option value="moderado">Moderado (ejercicio 2-3 veces/semana)</option>
+            <option value="activo">Active (ejercicio 4-5 veces/semana)</option>
+            <option value="muy_activo">Muy activo (deportista / trabajo físico)</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>¿Cuánto tiempo tienes disponible para ejercitarte?</label>
+          <select id="tiempoEjercicio">
+            <option value="15">Solo 15 minutos al día</option>
+            <option value="30">30 minutos al día</option>
+            <option value="45">45 minutos al día</option>
+            <option value="60">1 hora al día</option>
+            <option value="90">Más de 1 hora</option>
+          </select>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-back" onclick="nextStep(4)">← Atrás</button>
+        <button class="btn-next" onclick="nextStep(6)">Continuar →</button>
+      </div>
+    </div>
+
+    <!-- STEP 6: Confirmación -->
+    <div class="step" id="step6">
+      <div class="step-icon">🚀</div>
+      <h2>¡Tu plan está listo!</h2>
+      <p class="step-sub">Hemos procesado tu perfil. Revisa el resumen antes de ver tu plan completo.</p>
+      <div class="summary-card" id="summaryCard"></div>
+      <div class="btn-row" style="justify-content:center">
+        <button class="btn-primary big" onclick="generatePlan(true)">Ver mi Plan Completo →</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="hidden">
+  <div class="mobile-header" id="mobileHeader">
+    <div class="logo small" style="margin:0;">VIDA <span>ÓPTIMA</span></div>
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+  </div>
+  <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
+  
+  <div class="dash-sidebar" id="dashSidebar">
+    <div class="logo small hide-mobile">VIDA <span>ÓPTIMA</span></div>
+    <div class="dash-user" id="dashUser"></div>
+    <nav class="dash-nav">
+      <a href="#" class="dash-link active" onclick="showModule('perfil')">👤 Mi Perfil</a>
+      <a href="#" class="dash-link" onclick="showModule('progreso')">📊 Mi Progreso</a>
+      <a href="#" class="dash-link" onclick="showModule('menu')">🥗 Mi Menú</a>
+      <a href="#" class="dash-link" onclick="showModule('jugos')">🥤 Mis Jugos</a>
+      <a href="#" class="dash-link" onclick="showModule('ejercicio')">💪 Ejercicio</a>
+      <a href="#" class="dash-link" onclick="showModule('compras')">🛒 Lista de Compras</a>
+      <a href="#" class="dash-link" onclick="showModule('recomendaciones')">📚 Recomendaciones</a>
+      <a href="#" class="dash-link" onclick="showModule('biohacks')">🧬 BioHacks</a>
+      <a href="#" class="dash-link" onclick="showModule('sexual')">❤️ Salud Sexual</a>
+      <a href="#" class="dash-link" onclick="showModule('mental')">🧠 Salud Mental</a>
+      <a href="#" class="dash-link" onclick="showModule('seguridad')">🛡️ Prevención</a>
+      <a href="#" class="dash-link" onclick="showModule('rewards')" style="background:rgba(46,204,113,0.1); border-left:3px solid var(--green);">🎁 Beca de Salud</a>
+      <a href="#" class="dash-link supl" onclick="showModule('suplementos')">💊 Suplementos</a>
+    </nav>
+    <button class="btn-restart" onclick="restartApp()">↩︎ Nuevo perfil</button>
+  </div>
+  <div class="dash-content" id="dashContent">
+    <!-- Rendered by JS -->
+  </div>
+
+  <!-- Meal Modal -->
+  <div id="mealModal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <h2 id="modalMealName">Nombre de la comida</h2>
+      <div class="modal-body">
+        <h3>⚖️ Porciones Recomendadas</h3>
+        <p id="modalPortion">...</p>
+        <h3>👨‍🍳 Método de Preparación</h3>
+        <p id="modalPrep">...</p>
+        <h3>💊 Nutrición (Vitaminas Principales)</h3>
+        <p id="modalVits">...</p>
+        <h3>💧 Hidratación</h3>
+        <p id="modalWater">...</p>
+        <h3>🔄 Alternativas Económicas</h3>
+        <p id="modalAlt">...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Info / Thinking Modal -->
+  <div id="infoModal" class="modal hidden">
+    <div class="modal-content" style="max-width: 400px; text-align: center;">
+      <span class="close-modal" onclick="closeInfoModal()">&times;</span>
+      <div id="infoThinking" style="padding: 30px;">
+        <div style="font-size: 40px; margin-bottom: 15px;">🤔</div>
+        <h3 style="color: var(--blue);">Pensando...</h3>
+        <p style="color: var(--text2); font-size: 14px;">Consultando la base de datos biológica...</p>
+      </div>
+      <div id="infoResult" class="hidden" style="padding: 20px 10px;">
+        <h2 id="infoTitle" style="color: var(--primary); margin-bottom: 10px;">Título</h2>
+        <p id="infoText" style="color: var(--text); font-size: 15px; line-height: 1.6;">Explicación aquí.</p>
+        <button class="btn-primary" style="margin-top: 20px; padding: 10px 20px;" onclick="closeInfoModal()">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Welcome / Guidance Modal -->
+  <div id="welcomeModal" class="modal hidden">
+    <div class="modal-content" style="max-width: 450px; text-align: center; border-top: 4px solid var(--green);">
+      <span class="close-modal" onclick="closeWelcomeModal()">&times;</span>
+      <div style="font-size: 48px; margin-bottom: 15px;">🎉</div>
+      <h2 style="margin-bottom: 10px;">¡Tu perfil está configurado!</h2>
+      <p style="color: var(--text2); font-size: 15px; line-height: 1.6; margin-bottom: 20px;">
+        Para empezar, ve a tu menú en el <strong>panel lateral</strong> y chequea tu progreso cuando empieces tu rutina de comida. Si estás en celular, presiona el botón ☰ arriba a la derecha.
+      </p>
+      <button class="btn-primary" style="width: 100%;" onclick="closeWelcomeModal()">¡Vamos al Menú! →</button>
+    </div>
+  </div>
+
+</section>
+
+<!-- CDN de Firebase (Arquitectura Legacy v9 Compat) -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+
+<!-- Scripts de Lógica de la Aplicación -->
+<script src="engine.js"></script>
+<script src="modules.js"></script>
+<script src="cerebro/cerebro.js"></script>
+<script src="app_v3.js"></script>
+
+<!-- ── CRÉDITO DE DESARROLLO (Cirugía 1) ── -->
+<div style="position:fixed;bottom:14px;right:16px;z-index:99990;font-family:Inter,sans-serif;font-size:11px;color:rgba(255,255,255,0.45);pointer-events:none;user-select:none;">
+  Desarrollado por <a href="https://landirianositeoficial-pro.github.io/LANDIRIANO-SITE-OFICIAL-WEB/" target="_blank" rel="noopener" style="color:#00d4ff;text-decoration:none;cursor:pointer;pointer-events:auto;font-weight:600;letter-spacing:0.03em;">LANDIRIANOS SITE</a>
+</div>
+
+<!-- ── SISTEMA DE TOOLTIPS MÉDICOS (Cirugía 4) ── -->
+<div id="vo-tooltip" style="display:none;position:fixed;z-index:99998;background:#0d1117;border:1px solid rgba(0,212,255,0.35);color:#e0e0e0;font-family:Inter,sans-serif;font-size:12px;line-height:1.5;padding:10px 14px;border-radius:10px;max-width:280px;box-shadow:0 4px 20px rgba(0,0,0,0.6);pointer-events:none;transition:opacity 0.2s;"></div>
+<script>
+(function voTooltips(){
+  const GLOSARIO = {
+    'AINEs':               'Antiinflamatorios No Esteroideos (ibuprofeno, diclofenaco). En exceso dañan la mucosa gástrica y la función renal.',
+    'Anticoagulantes':     'Medicamentos que retrasan la coagulación sanguínea. Requieren control estricto de vitamina K y vegetales de hoja verde oscura.',
+    'anticoagulante':      'Medicamentos que retrasan la coagulación sanguínea. Requieren control estricto de vitamina K y vegetales de hoja verde oscura.',
+    'IMC':                 'Índice de Masa Corporal. Relación matemática entre peso y estatura (kg/m²) para clasificar la composición corporal.',
+    'Cortisol':            'Hormona del estrés. Su elevación crónica inhibe la pérdida de grasa, degrada músculo y deteriora la reparación celular.'
+  };
+  const tip = document.getElementById('vo-tooltip');
+  if (!tip) return;
+
+  function attachTooltips() {
+    document.querySelectorAll('label, .alert-box, .dash-card p, small, .step-sub').forEach(el => {
+      const text = el.innerHTML;
+      let modified = text;
+      Object.keys(GLOSARIO).forEach(term => {
+        const rx = new RegExp(`(?<![<"'\\w])(${term})(?![\\w"'>])`, 'g');
+        if (rx.test(modified)) {
+          modified = modified.replace(new RegExp(`(?<![<"'\\w])(${term})(?![\\w"'>])`, 'g'),
+            `<span class="vo-term" data-term="${term}" style="border-bottom:1px dotted #00d4ff;cursor:help;color:inherit;">$1</span>`);
+        }
+      });
+      if (modified !== text) el.innerHTML = modified;
+    });
+
+    document.querySelectorAll('.vo-term').forEach(span => {
+      span.addEventListener('mouseenter', e => {
+        const term = e.target.dataset.term;
+        tip.textContent = `📌 ${term}: ${GLOSARIO[term]}`;
+        tip.style.display = 'block';
+        tip.style.opacity = '1';
+        const r = e.target.getBoundingClientRect();
+        tip.style.left = Math.min(r.left, window.innerWidth - 300) + 'px';
+        tip.style.top  = (r.bottom + 8) + 'px';
+      });
+      span.addEventListener('mouseleave', () => { tip.style.opacity='0'; setTimeout(()=>tip.style.display='none',200); });
+    });
+  }
+
+  // Ejecutar tras carga completa y re-ejecutar cuando módulos rendericen nuevo HTML
+  document.addEventListener('DOMContentLoaded', attachTooltips);
+  const _orig = window.showModule;
+  if (typeof _orig === 'function') {
+    window.showModule = function() { _orig.apply(this, arguments); setTimeout(attachTooltips, 80); };
+  } else {
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const orig = window.showModule;
+        if (typeof orig === 'function') window.showModule = function() { orig.apply(this,arguments); setTimeout(attachTooltips,80); };
+      }, 500);
+    });
+  }
+})();
+</script>
+</body>
+</html>
